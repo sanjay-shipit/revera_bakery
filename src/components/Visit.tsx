@@ -5,15 +5,14 @@ import { Sparkle } from './ui/Sparkle'
 
 const channels = [
   {
-    label: 'Order on WhatsApp',
-    value: brand.phone,
-    href: brand.whatsappHref,
+    label: 'Order on Instagram',
+    value: brand.instagramHandle,
+    href: brand.instagram,
     primary: true,
   },
-  { label: 'Call to order', value: brand.phone, href: brand.phoneHref },
   {
-    label: 'Direct message',
-    value: brand.instagramHandle,
+    label: 'See the latest bakes',
+    value: 'reverabakehouse',
     href: brand.instagram,
   },
 ]

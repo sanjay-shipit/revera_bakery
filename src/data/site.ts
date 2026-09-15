@@ -14,10 +14,12 @@ export const brand = {
   tagline: 'A little more Revéra.',
   instagram: 'https://www.instagram.com/reverabakehouse/',
   instagramHandle: '@reverabakehouse',
-  // Visible on packaging in the reference — please confirm exact digits.
-  phone: '+91 88519 31150',
-  phoneHref: 'tel:+918851931150',
-  whatsappHref: 'https://wa.me/918851931150',
+  // Primary order channel until a phone number is confirmed.
+  orderHref: 'https://www.instagram.com/reverabakehouse/',
+  // TODO(owner): a phone number (~+91 88519 31150) is printed on the packaging
+  // but was not confirmed, so it is intentionally left off the live site.
+  // Restore `phone` / `phoneHref` / `whatsappHref` here once verified.
+  phone: '',
   // TODO(owner): city / full address & opening hours were not in the reference.
   city: '',
 }

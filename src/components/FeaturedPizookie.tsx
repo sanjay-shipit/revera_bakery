@@ -79,7 +79,7 @@ export function FeaturedPizookie() {
 
           <Reveal delay={0.2}>
             <a
-              href={brand.whatsappHref}
+              href={brand.orderHref}
               target="_blank"
               rel="noreferrer"
               className="mt-10 inline-block rounded-full bg-blush px-9 py-3.5 text-[0.72rem] uppercase tracking-[0.22em] text-wine transition-colors duration-500 hover:bg-cream"

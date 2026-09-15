@@ -45,9 +45,7 @@ export function Footer() {
             >
               {brand.instagramHandle}
             </a>
-            <a href={brand.phoneHref} className="link-underline uppercase tracking-[0.2em]">
-              {brand.phone}
-            </a>
+            <span className="tracking-[0.2em]">{brand.pronunciation}</span>
           </div>
           <p className="uppercase tracking-[0.2em]">
             © {new Date().getFullYear()} {brand.full} · 100% Eggless
