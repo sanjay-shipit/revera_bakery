@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { galleryImages, brand } from '../data/site'
 import { Reveal, Stagger } from './ui/Reveal'
 import { Sparkle } from './ui/Sparkle'
@@ -17,6 +18,44 @@ function InstagramGlyph({ className = '' }: { className?: string }) {
       <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.6" />
       <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
     </svg>
+  )
+}
+
+/** Square feed tile that lazy-loads and fades in smoothly once decoded. */
+function GalleryTile({ src, position }: { src: string; position?: string }) {
+  const [loaded, setLoaded] = useState(false)
+  const imgRef = useRef<HTMLImageElement>(null)
+
+  // Cover the case where the image is already cached/complete before React
+  // attaches the onLoad handler, so a tile can never get stuck invisible.
+  useEffect(() => {
+    if (imgRef.current?.complete) setLoaded(true)
+  }, [])
+
+  return (
+    <a
+      href={brand.instagram}
+      target="_blank"
+      rel="noreferrer"
+      className="frame group relative block aspect-square overflow-hidden rounded-[2px] bg-cream-deep"
+    >
+      <img
+        ref={imgRef}
+        src={src}
+        alt="Revéra Bakehouse"
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+        className={`h-full w-full object-cover transition-opacity duration-700 ease-out ${
+          loaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ objectPosition: position ?? 'center' }}
+      />
+      <div className="absolute inset-0 flex items-center justify-center bg-wine/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        <InstagramGlyph className="h-7 w-7 text-cream" />
+      </div>
+    </a>
   )
 }
 
@@ -49,27 +88,12 @@ export function Gallery() {
         </Reveal>
 
         <Stagger
-          className="mt-14 columns-2 gap-3 md:columns-4 md:gap-4"
-          gap={0.07}
+          className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4"
+          gap={0.06}
         >
           {galleryImages.map((g, i) => (
-            <Stagger.Item key={i} className="mb-3 break-inside-avoid md:mb-4">
-              <a
-                href={brand.instagram}
-                target="_blank"
-                rel="noreferrer"
-                className="frame group relative block overflow-hidden rounded-[2px] bg-cream-deep"
-              >
-                <img
-                  src={g.src}
-                  alt="Revéra Bakehouse"
-                  loading="lazy"
-                  className="w-full"
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-wine/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                  <InstagramGlyph className="h-7 w-7 text-cream" />
-                </div>
-              </a>
+            <Stagger.Item key={i}>
+              <GalleryTile src={g.src} position={g.position} />
             </Stagger.Item>
           ))}
         </Stagger>

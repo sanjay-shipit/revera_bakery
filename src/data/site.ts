@@ -75,13 +75,14 @@ export const products: Product[] = [
   },
 ]
 
-export const galleryImages = [
-  { src: images.giftBoxes, span: 'tall' as const },
-  { src: images.cookieBoxesTop, span: 'normal' as const },
-  { src: images.kraftBags, span: 'normal' as const },
-  { src: images.madeToShare, span: 'tall' as const },
-  { src: images.cookieSleeveHand, span: 'normal' as const },
-  { src: images.pizookieBoxesTop, span: 'normal' as const },
-  { src: images.butterCakeBoxes, span: 'tall' as const },
-  { src: images.brandPlate, span: 'normal' as const },
+// Object-position tuned per image so the square crop keeps the subject centred.
+export const galleryImages: { src: string; position?: string }[] = [
+  { src: images.giftBoxes, position: 'center 55%' },
+  { src: images.cookieBoxesTop },
+  { src: images.kraftBags, position: 'center 40%' },
+  { src: images.madeToShare, position: 'center 65%' },
+  { src: images.cookieSleeveHand, position: 'center 45%' },
+  { src: images.pizookieBoxesTop },
+  { src: images.doughMacro },
+  { src: images.brandPlate },
 ]
