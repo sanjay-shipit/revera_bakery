@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
-import { motion } from 'framer-motion'
+import { Nav } from './components/Nav'
+import { Hero } from './components/Hero'
+import { Story } from './components/Story'
+import { Signatures } from './components/Signatures'
+import { FeaturedPizookie } from './components/FeaturedPizookie'
+import { Gallery } from './components/Gallery'
+import { Visit } from './components/Visit'
+import { Footer } from './components/Footer'
 
-/**
- * Scaffold entry point.
- * The design system (palette, type, motion) is wired up here. Full editorial
- * sections are added once the brand's real Instagram photography is available
- * — imagery slots live in `src/assets/instagram/` (see README).
- */
 export default function App() {
   useEffect(() => {
     const prefersReduced = window.matchMedia(
@@ -16,57 +17,48 @@ export default function App() {
     if (prefersReduced) return
 
     const lenis = new Lenis({ duration: 1.1, smoothWheel: true })
+
+    // Route in-page anchor clicks through Lenis for smooth section scrolling.
+    const onAnchorClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement)?.closest?.(
+        'a[href^="#"]',
+      ) as HTMLAnchorElement | null
+      if (!anchor) return
+      const id = anchor.getAttribute('href')
+      if (!id || id === '#') return
+      const el = document.querySelector(id)
+      if (!el) return
+      e.preventDefault()
+      lenis.scrollTo(el as HTMLElement, { offset: -72 })
+    }
+    document.addEventListener('click', onAnchorClick)
+
     let raf = 0
     const loop = (time: number) => {
       lenis.raf(time)
       raf = requestAnimationFrame(loop)
     }
     raf = requestAnimationFrame(loop)
+
     return () => {
       cancelAnimationFrame(raf)
+      document.removeEventListener('click', onAnchorClick)
       lenis.destroy()
     }
   }, [])
 
   return (
-    <main className="min-h-dvh bg-porcelain text-ink">
-      <section className="relative flex min-h-dvh flex-col items-center justify-center px-6 text-center">
-        <motion.p
-          className="eyebrow text-gold"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        >
-          House of Refined Patisserie
-        </motion.p>
-
-        <motion.h1
-          className="mt-6 font-display font-light leading-[0.9] tracking-tight"
-          style={{ fontSize: 'var(--text-hero)' }}
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-        >
-          Revera
-        </motion.h1>
-
-        <motion.div
-          className="rule-gold mt-8 w-40"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
-        />
-
-        <motion.p
-          className="mt-8 max-w-md font-display text-xl italic text-ink-soft"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.7 }}
-        >
-          Design system ready. Awaiting the brand's photography to compose
-          the full experience.
-        </motion.p>
-      </section>
-    </main>
+    <>
+      <Nav />
+      <main>
+        <Hero />
+        <Story />
+        <Signatures />
+        <FeaturedPizookie />
+        <Gallery />
+        <Visit />
+      </main>
+      <Footer />
+    </>
   )
 }

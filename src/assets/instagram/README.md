@@ -1,30 +1,28 @@
-# Brand photography — drop-in folder
+# Brand photography
 
-Revera's **real Instagram photographs** go here. This is the primary visual
-source for the whole site; the design is composed around these images rather
-than stock photography.
+These are Revéra Bakehouse's **own Instagram photographs** — the primary visual
+source for the site. The design is composed around them rather than stock
+imagery.
 
-## How to add them
+## How they're wired in
 
-1. Export the images from Instagram (or share them via Google Drive / commit
-   them to the branch) and place the files in this folder.
-2. Use these role-based names so they slot straight into the layout — the
-   exact extension (`.jpg` / `.webp` / `.png`) does not matter:
+Files here are given original Instagram filenames. They are mapped to
+**semantic names** in [`../images.ts`](../images.ts) (e.g. `pizookieHero`,
+`giftBoxes`, `doughMacro`), and each section imports from there. To swap a
+photo, either replace the file and keep the import path, or point the semantic
+key in `images.ts` at a new file.
 
-   | File name                | Where it is used                              | Ideal crop           |
-   | ------------------------ | --------------------------------------------- | -------------------- |
-   | `hero.jpg`               | Full-bleed hero background                     | Landscape / wide     |
-   | `story.jpg`              | Brand / story editorial split                 | Portrait or square   |
-   | `product-01.jpg` … `-06` | Signature products grid                       | Square (1:1)         |
-   | `collection.jpg`         | Featured collection showpiece (large parallax)| Portrait / tall      |
-   | `gallery-01.jpg` … `-08` | Instagram-style gallery                       | Mixed square/portrait|
-   | `visit.jpg`              | Visit / order section                         | Landscape            |
-   | `logo.svg` / `logo.png`  | Wordmark in header + footer                   | Transparent bg       |
+## Notes on the current set
 
-3. Higher resolution is better (long edge ≥ 1600px for hero/collection).
+- Several product shots are the brand's **marketing-caption** images (with text
+  baked into the photo, e.g. "500g of pure indulgence"). They read as authentic
+  to the feed, but **clean, text-free product photos** would make the Signatures
+  grid look even more editorial — drop them in and update `images.ts`.
+- No official **logo SVG** was provided, so the wordmark is faithfully typeset
+  in Cormorant Garamond (see `../../components/ui/Wordmark.tsx`). Add the real
+  logo file here and swap it into that component when available.
 
 ## Colour sampling
 
-Once the real photos are here, the palette tokens in `src/index.css`
-(`--color-*`) are re-tuned by sampling the dominant/accent colours from the
-actual photography, so the site's colour story matches the brand's feed.
+The palette tokens in `src/index.css` (`--color-*`) were sampled from this
+photography: claret wine, blush rose, warm cream, antique gold, terracotta.

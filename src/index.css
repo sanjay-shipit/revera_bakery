@@ -1,35 +1,45 @@
 @import 'tailwindcss';
 
 /*
-  REVERA BAKERY — Design tokens
+  REVÉRA BAKEHOUSE — Design tokens
   ------------------------------------------------------------------
-  Palette is a PROPOSAL (Emerald & Gold on warm ivory) that will be
-  re-tuned by sampling the brand's real Instagram photography.
-  Change the values below once the true brand colors are confirmed.
+  Palette sampled from the brand's own Instagram photography:
+  claret wine (packaging), blush rose (wordmark), warm cream (box
+  interiors / plates / walls), antique gold (cutlery), terracotta
+  (ceramic plate rims).
 */
 @theme {
-  /* Grounds & ink */
-  --color-porcelain: #f6efe4; /* warm ivory ground */
-  --color-porcelain-deep: #efe6d6; /* slightly deeper panel */
-  --color-ink: #241a15; /* espresso text */
-  --color-ink-soft: #5a4d43; /* muted body text */
+  /* Grounds */
+  --color-cream: #f3ecdd; /* warm ivory ground */
+  --color-cream-deep: #e9dcc6; /* deeper panel */
+  --color-cream-soft: #f8f2e7;
 
-  /* Regal accent + metallic */
-  --color-emerald: #123b32; /* primary jewel tone */
-  --color-emerald-deep: #0d2a24;
-  --color-gold: #b08a4f; /* antique gold — hairlines/accents only */
-  --color-gold-soft: #c9a96a;
-  --color-terracotta: #c98b6b; /* warm patisserie tint */
+  /* Regal wine family */
+  --color-wine: #6e1f2b; /* primary brand — boxes */
+  --color-wine-deep: #47131e; /* darkest ground / depth */
+  --color-claret: #8a2338; /* brighter accent — ribbon */
+
+  /* Blush + metallic + warm */
+  --color-blush: #edc1c8; /* wordmark rose */
+  --color-blush-soft: #f6dee2;
+  --color-gold: #c2a15a; /* antique gold — hairlines/accents */
+  --color-gold-soft: #d8bd86;
+  --color-terracotta: #b5623c; /* ceramic rim warmth */
+
+  /* Ink */
+  --color-ink: #2a1518; /* dark wine-brown text on cream */
+  --color-ink-soft: #6a504a; /* muted body copy */
 
   /* Type families */
   --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
   --font-sans: 'Jost', ui-sans-serif, system-ui, sans-serif;
 
   /* Fluid display sizes */
-  --text-hero: clamp(2.75rem, 8vw, 8rem);
-  --text-section: clamp(2rem, 5vw, 4.5rem);
+  --text-hero: clamp(3.25rem, 13vw, 12rem);
+  --text-display: clamp(2.5rem, 6.5vw, 6rem);
+  --text-section: clamp(2rem, 4.6vw, 4rem);
 
-  /* Easing */
+  /* Motion */
   --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -40,14 +50,31 @@
 html {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  background-color: var(--color-porcelain);
+  background-color: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* Fallback anchor offset for the fixed header (reduced-motion / no-JS) */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--color-wine);
+  color: var(--color-blush);
 }
 
 /* Wide-tracked uppercase micro-label ("eyebrow") */
@@ -55,29 +82,76 @@ body {
   font-family: var(--font-sans);
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.32em;
-  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  font-size: clamp(0.62rem, 1.1vw, 0.78rem);
 }
 
 /* Hairline gold rule */
 .rule-gold {
   height: 1px;
+  width: 100%;
   background: linear-gradient(
     to right,
     transparent,
-    var(--color-gold) 20%,
-    var(--color-gold) 80%,
+    var(--color-gold) 15%,
+    var(--color-gold) 85%,
     transparent
   );
 }
 
+/* Animated link underline (draws on hover) */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.28em;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.55s var(--ease-luxe);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Zoom-within-frame image container */
+.frame {
+  overflow: hidden;
+}
+.frame img {
+  transition: transform 1.1s var(--ease-luxe);
+  will-change: transform;
+}
+.frame:hover img {
+  transform: scale(1.06);
+}
+
+/* Subtle printed-paper grain for luxe texture */
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
   }
 }
