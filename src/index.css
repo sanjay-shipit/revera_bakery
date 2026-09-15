@@ -1,0 +1,83 @@
+@import 'tailwindcss';
+
+/*
+  REVERA BAKERY — Design tokens
+  ------------------------------------------------------------------
+  Palette is a PROPOSAL (Emerald & Gold on warm ivory) that will be
+  re-tuned by sampling the brand's real Instagram photography.
+  Change the values below once the true brand colors are confirmed.
+*/
+@theme {
+  /* Grounds & ink */
+  --color-porcelain: #f6efe4; /* warm ivory ground */
+  --color-porcelain-deep: #efe6d6; /* slightly deeper panel */
+  --color-ink: #241a15; /* espresso text */
+  --color-ink-soft: #5a4d43; /* muted body text */
+
+  /* Regal accent + metallic */
+  --color-emerald: #123b32; /* primary jewel tone */
+  --color-emerald-deep: #0d2a24;
+  --color-gold: #b08a4f; /* antique gold — hairlines/accents only */
+  --color-gold-soft: #c9a96a;
+  --color-terracotta: #c98b6b; /* warm patisserie tint */
+
+  /* Type families */
+  --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+  --font-sans: 'Jost', ui-sans-serif, system-ui, sans-serif;
+
+  /* Fluid display sizes */
+  --text-hero: clamp(2.75rem, 8vw, 8rem);
+  --text-section: clamp(2rem, 5vw, 4.5rem);
+
+  /* Easing */
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-porcelain);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+}
+
+/* Wide-tracked uppercase micro-label ("eyebrow") */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 0.72rem;
+}
+
+/* Hairline gold rule */
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-gold) 20%,
+    var(--color-gold) 80%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
