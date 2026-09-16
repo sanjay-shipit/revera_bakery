@@ -35,7 +35,9 @@
   --font-sans: 'Jost', ui-sans-serif, system-ui, sans-serif;
 
   /* Fluid display sizes */
-  --text-hero: clamp(3.25rem, 13vw, 12rem);
+  /* Hero wordmark — refined/editorial scale (reduced from 13vw/12rem so it
+     leads without overpowering the photography). */
+  --text-hero: clamp(2.5rem, 8vw, 7rem);
   --text-display: clamp(2.5rem, 6.5vw, 6rem);
   --text-section: clamp(2rem, 4.6vw, 4rem);
 
@@ -84,6 +86,14 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.34em;
   font-size: clamp(0.62rem, 1.1vw, 0.78rem);
+}
+
+/* Inline SVG logo — scales to wrapper width, inherits currentColor */
+.logo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: currentColor;
 }
 
 /* Hairline gold rule */

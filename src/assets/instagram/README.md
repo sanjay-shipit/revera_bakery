@@ -18,9 +18,9 @@ key in `images.ts` at a new file.
   baked into the photo, e.g. "500g of pure indulgence"). They read as authentic
   to the feed, but **clean, text-free product photos** would make the Signatures
   grid look even more editorial — drop them in and update `images.ts`.
-- No official **logo SVG** was provided, so the wordmark is faithfully typeset
-  in Cormorant Garamond (see `../../components/ui/Wordmark.tsx`). Add the real
-  logo file here and swap it into that component when available.
+- The official **logo** (`src/assets/logo.svg`, extracted from the client's
+  REVÉRA.pdf, backgrounds stripped, recoloured via `currentColor`) is used in
+  the header and footer through `../../components/ui/Logo.tsx`.
 
 ## Colour sampling
 

@@ -1,5 +1,5 @@
 import { brand, nav } from '../data/site'
-import { Wordmark } from './ui/Wordmark'
+import { Logo } from './ui/Logo'
 import { Sparkle } from './ui/Sparkle'
 
 export function Footer() {
@@ -10,7 +10,7 @@ export function Footer() {
     >
       <div className="mx-auto max-w-[1300px] px-6 py-16 md:px-10 md:py-20">
         <div className="flex flex-col items-center gap-6 text-center">
-          <Wordmark className="text-[2.4rem] text-blush-soft md:text-[3rem]" />
+          <Logo className="w-[230px] text-blush-soft md:w-[280px]" />
           <div className="flex items-center gap-3 text-gold">
             <span className="h-px w-8 bg-gold/50" />
             <Sparkle size={12} />

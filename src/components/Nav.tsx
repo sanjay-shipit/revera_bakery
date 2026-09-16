@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { nav, brand } from '../data/site'
-import { Wordmark } from './ui/Wordmark'
+import { Logo } from './ui/Logo'
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -37,11 +37,14 @@ export function Nav() {
         style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-10">
-          <a href="#top" aria-label={brand.full} className="shrink-0">
-            <Wordmark
-              subtitle={false}
-              className="text-[1.35rem] md:text-[1.6rem]"
-            />
+          <a
+            href="#top"
+            aria-label={brand.full}
+            className={`shrink-0 transition-colors duration-500 ${
+              solid ? 'text-wine' : 'text-cream'
+            }`}
+          >
+            <Logo className="w-[132px] md:w-[156px]" />
           </a>
 
           <nav className="hidden items-center gap-9 lg:flex">

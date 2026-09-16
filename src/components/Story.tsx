@@ -37,8 +37,8 @@ export function Story() {
             className="frame absolute bottom-0 right-0 h-[58%] w-[58%] overflow-hidden rounded-[2px] border-[6px] border-cream shadow-[0_30px_60px_-30px_rgba(71,19,30,0.55)]"
           >
             <img
-              src={images.pizookieMolds}
-              alt="Freshly baked pizookies resting in stainless ring moulds"
+              src={images.cookieInHand}
+              alt="A wrapped Revéra cookie, finished and packed by hand"
               className="h-full w-full object-cover"
             />
           </motion.div>

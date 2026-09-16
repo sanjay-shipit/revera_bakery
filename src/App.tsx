@@ -52,8 +52,8 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <Story />
         <Signatures />
+        <Story />
         <FeaturedPizookie />
         <Gallery />
         <Visit />
