@@ -26,6 +26,8 @@ import biscoffBox from './photos/biscoff-box.jpg'
 import biscoffPlate from './photos/biscoff-plate.jpg'
 import seaSaltLogobox from './photos/sea-salt-logobox.jpg'
 import seaSaltPlate from './photos/sea-salt-plate.jpg'
+import pizookiePlated from './photos/pizookie-plated.jpg'
+import pizookieGiftBox from './photos/pizookie-gift-box.jpg'
 
 export const images = {
   brandPlate,
@@ -50,6 +52,8 @@ export const images = {
   biscoffPlate,
   seaSaltLogobox,
   seaSaltPlate,
+  pizookiePlated,
+  pizookieGiftBox,
 }
 
 export type ImageKey = keyof typeof images

@@ -94,9 +94,9 @@ export function FeaturedPizookie() {
           <Reveal y={40}>
             <div className="frame relative mx-auto aspect-[4/5] max-w-md overflow-hidden rounded-[2px] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.6)]">
               <motion.img
-                style={{ y: imgY, scale: 1.1 }}
-                src={images.pizookieBoxesTop}
-                alt="Golden Revéra pizookies packed in signature boxes"
+                style={{ y: imgY, scale: 1.1, objectPosition: 'center 52%' }}
+                src={images.pizookieGiftBox}
+                alt="A whole Revéra pizookie plated beside its signature wine gift box and ribbon"
                 className="h-full w-full object-cover"
               />
               <span className="pointer-events-none absolute right-4 top-4 text-gold-soft">

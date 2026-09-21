@@ -57,9 +57,9 @@ export const products: Product[] = [
     tag: 'Signature · 500g',
     description:
       'A deep-dish cookie with crisp edges and a molten, gooey centre. Made to share — or not.',
-    image: images.pizookieBoxesTop,
+    image: images.pizookiePlated,
     detailImage: images.pizookieMoldsCraft,
-    objectPosition: 'center 50%',
+    objectPosition: 'center 45%',
     detailObjectPosition: 'center 55%',
     highlights: [
       '500g deep-dish',
